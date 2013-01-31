@@ -85,8 +85,6 @@ module.exports = (grunt) ->
           basePath: "components/"
 
     exec:
-      docco:
-        command: "docco -o docs/js/ js/*.js js/*.coffee"
       copyImages:
         command: "mkdir -p dist/images; cp -R images/ dist/images/"
 
