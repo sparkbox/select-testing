@@ -20,7 +20,7 @@ module.exports = (grunt) ->
         tasks: "partials"
 
       javascript:
-        files: ["coffee/*", "js/**/*.js"]
+        files: ["coffee/*"]
         tasks: "javascript"
 
     compass:
@@ -78,6 +78,12 @@ module.exports = (grunt) ->
       javascript: "dist/js/*"
       images: "dist/images/*"
 
+    bower:
+      dev:
+        dest: "dist"
+        options:
+          basePath: "components/"
+
     exec:
       docco:
         command: "docco -o docs/js/ js/*.js js/*.coffee"
@@ -92,12 +98,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-modernizr"
   grunt.loadNpmTasks "grunt-notify"
   grunt.loadNpmTasks "grunt-exec"
+  grunt.loadNpmTasks "grunt-bower"
 
   # Clean and concatenate partials
   grunt.registerTask "partials", [ "clean:partials", "concat:partials" ]
 
   # Clean, compile and concatenate JS
-  grunt.registerTask "javascript", [ "clean:javascript", "coffee", "concat:js"]
+  grunt.registerTask "javascript", [ "clean:javascript", "coffee", "concat:js", "bower"]
 
   # Clean and compile stylesheets
   grunt.registerTask "stylesheets", ["clean:stylesheets", "compass"]
